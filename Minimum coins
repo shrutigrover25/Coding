@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int deno[] = { 1, 2, 5, 10, 20,
+               50, 100, 500, 1000 };
+int m = sizeof(deno) / sizeof(deno[0]);
+  
+void findMin(int n)
+{
+    sort(deno, deno+m, greater<int>());
+    
+    vector<int>v;
+    
+    for(int i=0;i<m;i++)
+    {
+        if(deno[i]<=n)
+        {
+            n-=deno[i];
+            v.push_back(deno[i]);
+        }
+    }
+    
+    for(int i=0;i<v.size();i++)
+    {
+        cout<<""<<v[i]<<endl;
+    }
+}
+
+
+
+
+int main()
+{
+    int n = 93;
+    cout << "Following is minimal"
+         << " number of change for " << n
+         << ": ";
+    findMin(n);
+    return 0;
+}
