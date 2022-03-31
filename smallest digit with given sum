@@ -1,0 +1,59 @@
+#include<iostream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+
+
+int findSmallest(int m,int s)
+{
+    if(s==0)
+    {
+        if(m==1)
+        {
+            cout<<"smaleest no. is 0"<<endl;
+        }
+        
+        else
+        {
+            cout<<"not possible"<<endl;
+        }
+    }
+    
+    if(s>9*m)
+    {
+        cout<<"not possible"<<endl;
+    }
+    
+    s=s-1;
+    
+    int res[m];
+    
+    for(int i=m-1;i>0;i--)
+    {
+        if(s>9)
+        {
+            res[i]=9;
+            s-=9;
+        }
+        
+        else
+        {
+            res[i]=s;
+            s=0;
+        }
+    }
+    
+    res[0]=s+1;
+    
+    for(int i=0;i<m;i++)
+    {
+        cout<<""<<res[i];
+    }
+}
+
+int main()
+{
+    int s = 9, m = 2;
+    findSmallest(m, s);
+    return 0;
+}
