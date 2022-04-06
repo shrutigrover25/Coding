@@ -1,0 +1,50 @@
+class Solution {
+public:
+    int convertTime(string current, string correct) {
+        
+     int a=stoi(current.substr(0,2));
+     int b=stoi(current.substr(3,4));
+     int c=stoi(correct.substr(0,2));
+     int d=stoi(correct.substr(3,4));
+        
+     int corr=c*60+d;
+     int min=a*60+b;
+        
+     int count=0;
+                  
+     
+     while(corr!=min)
+     {
+         int diff=corr-min;
+         
+         if(diff>=60)
+         {
+            corr-=60;
+            count++;
+         }
+         
+         else if(diff>=15 && diff<60)
+         {
+             corr-=15;
+             count++;
+         }
+         
+         else if(diff>=5 && diff <15)
+         {
+             corr-=5;
+             count++;
+         }
+         
+         else
+         {
+             corr-=1;
+             count++;
+         }
+     }
+     
+     
+        
+        return count;
+        
+    }
+};
