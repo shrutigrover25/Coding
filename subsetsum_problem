@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int static dp[101][10001];
+
+
+bool subset(int arr[], int n, int sum)
+{
+    if(n==0)
+    {
+        return false;
+    }
+    
+    if(sum==0)
+    {
+        return true;
+    }
+    
+    if(dp[n-1][sum]!=-1)
+    {
+        return dp[n][sum];
+    }
+    
+    if(arr[n-1]<=sum)
+    {
+        return dp[n-1][sum]= subset(arr,n-1,sum-arr[n-1])||subset(arr,n-1,sum);
+    }
+    
+    else if(arr[n-1]>sum)
+    {
+        return dp[n-1][sum]= subset(arr,n-1,sum);
+    }
+}
+int main()
+{
+    int n = 5;
+    int arr[] = {1, 5, 3, 7, 4};
+    
+     memset(dp,-1,sizeof(dp));
+     
+    int sum = 12;
+ 
+    if (subset(arr, n, sum))
+    {
+        cout << "YES" << endl;
+    }
+    else
+        cout << "NO" << endl;
+}
+
+        
+        
+       
