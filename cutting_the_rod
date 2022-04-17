@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+static int dp[100][100];
+
+int cutRod(int price[], int length[], int n, int maxii)
+{
+    if(n==0 || maxii==0)
+    {
+        return 0;
+    }
+    
+    
+    if(dp[n][maxii]!=-1)
+    {
+        return dp[n][maxii];
+    }
+    
+    if(length[n-1]<=maxii)
+    {
+        return dp[n][maxii]=max(price[n-1]+cutRod(price,length,n,maxii-length[n-1]),cutRod(price,length,n-1,maxii));
+    }
+    
+    else
+    {
+        return dp[n][maxii]=cutRod(price,length,n-1,maxii);
+    }
+    
+    return dp[n][maxii];
+}
+
+
+int main()
+{
+    memset(dp,-1,sizeof(dp));
+    int price[] = { 1, 5, 8, 9, 10, 17, 17, 20 };
+    int n = sizeof(price) / sizeof(price[0]);
+    int length[n];
+    for (int i = 0; i < n; i++) {
+        length[i] = i + 1;
+    }
+    int Max_len = n;
+ 
+    // Function Call
+    cout << "Maximum obtained value  is "
+         << cutRod(price, length, n, Max_len) << endl;
+}
