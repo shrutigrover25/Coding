@@ -1,0 +1,77 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int lastocc(int arr[], int n, int x)
+{
+    int start=0;
+    int end=n-1;
+    int ans;
+    
+    while(start<=end)
+    {
+        int mid=start+(end-start)/2;
+        
+        if(arr[mid]==x)
+        {
+            ans=mid;
+            start=mid+1;
+        }
+        
+        else if(arr[mid]>x)
+        {
+            end=mid-1;
+        }
+        
+        else
+        {
+            start=mid+1;
+        }
+        
+    }
+    
+    return ans;
+}
+
+
+int firstocc(int arr[], int n, int x)
+{
+    int start=0;
+    int end=n-1;
+    int ans;
+    
+    while(start<=end)
+    {
+        int mid=start+(end-start)/2;
+        
+        if(arr[mid]==x)
+        {
+            ans=mid;
+            end=mid-1;
+        }
+        
+        else if(arr[mid]>x)
+        {
+            end=mid-1;
+        }
+        
+        else
+        {
+            start=mid+1;
+        }
+        
+    }
+    
+    return ans;
+}
+
+
+int main()
+{
+  int arr[] = {1, 2, 2, 3, 3, 3, 3};
+  int x =  3;  // Element to be counted in arr[]
+  int n = sizeof(arr)/sizeof(arr[0]);
+  int first=firstocc(arr,n,x);
+  int last=lastocc(arr,n,x);
+  int ans=last-first+1;
+  cout<<""<<ans<<endl;
+}
