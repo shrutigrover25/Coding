@@ -1,0 +1,83 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    Node* left;
+    Node* right;
+    int data;
+};
+
+
+Node* newNode(int key)
+{
+    Node* node= new Node();
+    node->data=key;
+    node->left=NULL;
+    node->right=NULL;
+    return node;
+}
+
+vector<int>topview( Node* root, int level)
+{
+    vector<int>ans;
+    
+    if(root==NULL)
+    {
+        return ans;
+    }
+    map<int,int>mp;
+    queue<pair<Node*,int>>q;
+    
+    q.push({root,0});
+    
+    while(!q.empty())
+    {
+        auto it=q.front();
+        q.pop();
+        
+        Node* node=it.first;
+        int level=it.second;
+        
+        if(mp.find(level)==mp.end())
+        {
+            mp[level]=node->data;
+        }
+        
+        if(node->left!=NULL)
+        {
+            q.push({root->left,level-1});
+            
+        }
+        
+        if(node->right!=NULL)
+        {
+            q.push({root->right,level+1});
+        }
+
+    }
+    
+    for(auto it:mp)
+    {
+        ans.push_back(it.second);
+    }
+    
+    return ans;
+}
+int main()
+{
+    Node* root=newNode(1);
+    root -> left = newNode(2);
+    root -> right = newNode(3);
+    root -> left -> right = newNode(4);
+    root -> left -> right -> right = newNode(5);
+    root -> left -> right -> right -> right = newNode(6);
+    vector<int>v;
+    v=topview(root,0);
+    
+    for(auto it:v)
+    {
+        cout<<""<<it<<endl;
+    }
+    
+}
