@@ -41,18 +41,16 @@ vector<int>topview( Node* root, int level)
         
         if(mp.find(level)==mp.end())
         {
-            mp[level]=node->data;
+        mp[level]=node->data;
         }
-        
         if(node->left!=NULL)
         {
-            q.push({root->left,level-1});
-            
+            q.push({node->left,level-1});
         }
         
         if(node->right!=NULL)
         {
-            q.push({root->right,level+1});
+            q.push({node->right,level+1});
         }
 
     }
