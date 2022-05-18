@@ -1,0 +1,60 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Node
+{
+    int data;
+    struct Node* left;
+    struct Node* right;
+    
+    
+};
+
+struct Node* newnode(int data)
+{
+    struct Node* node=new Node();
+    node->data=data;
+    node->left=NULL;
+    node->right=NULL;
+}
+int height(struct Node* root)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    
+    int lh=height(root->left);
+    int rh=height(root->right);
+    
+    return max(lh,rh)+1;
+}
+int diameter(struct Node* root)
+{
+    if(root==NULL)
+    {
+        return 0;
+    }
+    
+    int lh=height(root->left);
+    int rh=height(root->right);
+    
+    int d1=lh+rh;
+    
+    int d2=diameter(root->left);
+    int d3=diameter(root->right);
+    
+    return max(d1,d2,d3);
+}
+
+
+int main()
+{
+    struct  Node* root=newnode(1);
+    root->left=newnode(2);
+    root->right=newnode(3);
+    root->left->left = newnode(4);
+    root->left->right = newnode(5);
+    
+    cout<<""<<diameter(root);
+}
