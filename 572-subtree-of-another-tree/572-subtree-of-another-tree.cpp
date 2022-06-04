@@ -9,9 +9,6 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution {
-public:
-
 bool isidentical(TreeNode* root, TreeNode* subRoot)
 {
     if(root==NULL && subRoot==NULL)
