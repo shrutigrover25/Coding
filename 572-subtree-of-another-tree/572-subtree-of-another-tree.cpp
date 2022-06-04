@@ -11,17 +11,29 @@
  */
 class Solution {
 public:
-    bool isSame(TreeNode* x, TreeNode* y){
-    if(x == NULL or y == NULL) return x==y;
-    
-    if(x->val != y->val) return false;
-    return isSame(x->left, y->left) and isSame(x->right, y->right);
-}
 
-bool isSubtree(TreeNode* root, TreeNode* subRoot) {
-    if(root == NULL) return root == subRoot;
-    bool flag = isSame(root, subRoot);
+bool isidentical(TreeNode* root, TreeNode* subRoot)
+{
+    if(root==NULL && subRoot==NULL)
+        return true;
     
-    return flag or isSubtree(root->left, subRoot) or isSubtree(root->right, subRoot);
+    if(root==NULL || subRoot==NULL)
+        return false;
+    
+    return (root->val==subRoot->val && isidentical(root->left,subRoot->left) && isidentical(root->right, subRoot->right));
 }
+    bool isSubtree(TreeNode* root, TreeNode* subRoot) {
+        
+        if(root==NULL)
+            return false;
+        
+        if(subRoot==NULL)
+            return true;
+        
+        if(isidentical(root,subRoot))
+            return true;
+        
+        return isSubtree(root->left,subRoot)||isSubtree(root->right,subRoot);
+        
+    }
 };
