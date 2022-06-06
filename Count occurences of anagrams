@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool areanag(string p,string &txt)
+{
+    
+    map<char,int>mp;
+    
+    for(int i=0;i<p.length();i++)
+    {
+        mp[p[i]]++;
+    }
+    
+    for(int i=0;i<txt.length();i++)
+    {
+        mp[txt[i]]--;
+    }
+    
+    for(auto it:mp)
+    {
+        if(it.second!=0)
+        {
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+
+int main()
+{
+
+   string pat="forxxorfxdofr";
+   string txt="for";
+   
+    int count=0;
+	    
+	    for(int i=0;i<pat.length()- txt.length()+1;i++)
+	    {
+	       if(areanag(pat.substr(i,txt.length()),txt))
+	       {
+	           count++;
+	       }
+	    }
+	    
+	    cout<<" "<<count;
+}
