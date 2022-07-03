@@ -4,7 +4,7 @@ public:
         
         int n=nums.size();
         int sum=0;
-        int leftsum=0;
+        int lsum=0;
         
         for(int i=0;i<n;i++)
         {
@@ -13,16 +13,17 @@ public:
         
         for(int i=0;i<n;i++)
         {
-            sum=sum-nums[i];
+            sum-=nums[i];
             
-            if(sum==leftsum)
+            if(lsum==sum)
             {
                 return i;
             }
             
-            leftsum+=nums[i];
+            lsum+=nums[i];
         }
         
         return -1;
+        
     }
 };
