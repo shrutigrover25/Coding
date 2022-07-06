@@ -14,21 +14,21 @@ public:
     TreeNode* bstFromPreorder(vector<int>& preorder) {
         
         int i=0;
-       return buildbst(preorder,i,INT_MAX);
+        return build(preorder,i,INT_MAX);
         
     }
     
-TreeNode* buildbst(vector<int>&preorder, int &i, int upper )
-{
-    if(i==preorder.size() || preorder[i]>upper)
+    TreeNode* build(vector<int>&preorder, int &i, int bound)
     {
-        return NULL;
+        if(i==preorder.size() || preorder[i]>bound)
+        {
+            return NULL;
+        }
+        
+        TreeNode* root=new TreeNode(preorder[i++]);
+        root->left=build(preorder,i,root->val);
+        root->right=build(preorder,i,bound);
+        
+        return root;
     }
-    
-    TreeNode* root= new TreeNode(preorder[i++]);
-    root->left=buildbst(preorder,i,root->val);
-    root->right=buildbst(preorder,i,upper);
-    
-    return root;
-}
 };
