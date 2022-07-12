@@ -1,30 +1,23 @@
 class Solution {
 public:
-    
     int fib(int n) {
         
-     int dp[n+2];
-     memset(dp,-1,sizeof(dp));
-    
-      if(n==0)
-      {
-          return dp[0]=0;
-      }
+        int prev2=0;
+        int prev=1;
         
-      if(n==1)
-      {
-          return dp[1]=1;
-      }        
+        if(n==0)
+        {
+            return prev2;
+        }
         
-      if(dp[n]!=-1)
-      {
-          return dp[n];
-      }
+        for(int i=2;i<=n;i++)
+        {
+            int curr=prev2+prev;
+            prev2=prev;
+            prev=curr;
+        }
         
-      else
-      {
-          return dp[n]=fib(n-1)+fib(n-2);
-      }
+        return prev;
         
     }
 };
