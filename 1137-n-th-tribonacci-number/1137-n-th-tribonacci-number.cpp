@@ -2,19 +2,18 @@ class Solution {
 public:
     int tribonacci(int n) {
         
-        int f[n+3];
+        int dp[n+3];
         
-        f[0]=0;
-        f[1]=1;
-        f[2]=1;
-        
+        dp[0]=0;
+        dp[1]=1;
+        dp[2]=1;
         
         for(int i=3;i<=n;i++)
         {
-            f[i]=f[i-1]+f[i-2]+f[i-3];
+            dp[i]=dp[i-1]+dp[i-2]+dp[i-3];
         }
         
-        return f[n];
+        return dp[n];
         
     }
 };
