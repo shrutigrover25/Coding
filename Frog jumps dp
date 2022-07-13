@@ -1,0 +1,38 @@
+int inf=1e9;
+
+int findans(int n, vector<int>&heights, int i, vector<int>&dp)
+{
+    if(i>=n)
+    {
+        return 0;
+    }
+    
+    if(dp[i]!=-1)
+    {
+        return dp[i];
+    }
+    
+    int left=inf;
+    int right=inf;
+    
+    if(i+1<=n)
+    {
+        left=findans(n,heights,i+1,dp)+abs(heights[i]-heights[i+1]);
+    }
+    
+    if(i+2<=n)
+    {
+        right=findans(n,heights,i+2,dp)+abs(heights[i]-heights[i+2]);
+    }
+    
+    int ans=min(left,right);
+    
+    return dp[i]=ans;
+}
+
+int frogJump(int n, vector<int> &heights)
+{
+    // Write your code here.
+    vector<int>dp(n+1,-1);
+    return findans(n-1,heights,0,dp);
+}
