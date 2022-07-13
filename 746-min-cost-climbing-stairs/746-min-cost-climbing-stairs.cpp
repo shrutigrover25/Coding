@@ -1,11 +1,11 @@
 class Solution {
 public:
     
-int minCost(vector<int>&cost,int i, vector<int>&dp,int n)
+int findans(int i, vector<int>&cost, vector<int>&dp,int n)
 {
     if(i>=n)
     {
-        return 0;
+        return  0;
     }
     
     if(dp[i]!=-1)
@@ -13,18 +13,18 @@ int minCost(vector<int>&cost,int i, vector<int>&dp,int n)
         return dp[i];
     }
     
-  dp[i]=cost[i]+min(minCost(cost,i+1,dp,n),minCost(cost,i+2,dp,n));
+    dp[i]= cost[i]+min(findans(i+1,cost,dp,n),findans(i+2,cost,dp,n));
     
-  return dp[i];
+    return dp[i];
 }
-    
     int minCostClimbingStairs(vector<int>& cost) {
         
         int n=cost.size();
-        vector<int>dp(n+1,-1);
+        vector<int>dp(n+2,-1);
         
+        int ans=min(findans(0,cost,dp,n),findans(1,cost,dp,n));
         
-        return min(minCost(cost,0,dp,n),minCost(cost,1,dp,n));
+        return ans;
         
     }
 };
