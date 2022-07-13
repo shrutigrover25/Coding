@@ -1,23 +1,33 @@
 class Solution {
 public:
-    int rob(vector<int>& nums) {
-      int n = nums.size();
-      vector<int>dp(n,-1); 
-      int ans= backtrack(nums,0,n,dp);
-      return ans;
+    
+int findans(vector<int>&nums, int n, vector<int>&dp, int index)
+{
+    if(index>=n)
+    {
+        return 0;
     }
-    int backtrack(vector<int>&nums,int index,int n,vector<int>&dp){
-        if(index>=n){
-            return 0;
-        }
-        if(dp[index]!=-1)
-            return dp[index];
+    
+    if(dp[index]!=-1)
+    {
+        return dp[index];
+    }
+    
+    int pick=nums[index]+findans(nums,n,dp,index+2);
+    
+    int notpick=0+findans(nums,n,dp,index+1);
+    
+    int ans=max(pick,notpick);
+    
+    return dp[index]=ans;
+    
+}
+    int rob(vector<int>& nums) {
         
-        // choose not to rob
-        int ans1=backtrack(nums,index+1,n,dp);
-        // choose to rob and move to 2nd index from the postion
-        int ans2=nums[index]+backtrack(nums,index+2,n,dp);
+        int n=nums.size();
+        vector<int>dp(n+1,-1);
         
-        return dp[index]=max(ans1,ans2);
+        return findans(nums,n,dp,0);
+        
     }
 };
