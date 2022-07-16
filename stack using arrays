@@ -1,0 +1,96 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int top=-1;
+
+int push(int stack[], int n, int x )
+{
+    if(top>=n)
+    {
+        cout<<"overflow"<<endl;
+    }
+    
+    else
+    {
+        top++;
+        stack[top]=x;
+    }
+}
+
+int pop(int stack[], int n)
+{
+    if(top==-1)
+    {
+        cout<<"underflow"<<endl;
+        return 0;
+    }
+    
+    else
+    {
+        int p=stack[top];
+        top--;
+        return p;
+        
+    }
+}
+
+int topel(int stack[], int n)
+{
+    if(top==-1)
+    {
+        cout<<"underflow"<<endl;
+        return 0;
+    }
+    
+    else
+    {
+        int p=stack[top];
+        return p;
+    }
+}
+
+bool isempty(int stack[], int n)
+{
+    if(top==-1)
+    {
+        return true;
+    }
+    
+    else
+    {
+        return false;
+    }
+}
+
+void display(int stack[], int n)
+{
+    int i=top;
+    
+    while(i>=0)
+    {
+        cout<<""<<stack[i];
+        i--;
+    }
+}
+int main()
+{
+    
+    
+    int n=3;
+    
+    int stack[n];
+    
+    push(stack,n,1);
+    push(stack,n,2);
+    push(stack,n,3);
+    
+    display(stack,n);
+    cout<<endl;
+    cout<<" "<<pop(stack,n)<<endl;
+    cout<<" "<<topel(stack,n)<<endl;
+    cout<<" "<<pop(stack,n)<<endl;
+    cout<<" "<<pop(stack,n)<<endl;
+    cout<<" "<<isempty(stack,n);
+    
+    
+}
