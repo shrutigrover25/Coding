@@ -8,19 +8,22 @@ int callfun(int i, int j, int m, int n,vector<vector<int>>&dp)
         dp[i][j]=1;
     }
     
+    if(i>=m || j>=n)
+    {
+        dp[i][j]=0;
+    }
+    
     if(dp[i][j]!=-1)
     {
         return dp[i][j];
     }
     
-    if(i>=0 && i<m && j>=0 && j<n)
-    {
-        return dp[i][j]=callfun(i+1,j,m,n,dp)+callfun(i,j+1,m,n,dp);
-        
-        
-    }
+    int up=callfun(i+1,j,m,n,dp);
+    int down=callfun(i,j+1,m,n,dp);
     
-    return dp[i][j]=0;
+    return dp[i][j]=up+down;
+    
+    
     
 }
     
