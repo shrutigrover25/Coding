@@ -1,0 +1,35 @@
+#include<limits>
+#include<vector>
+
+int callfunc(int i, int j, vector<int>&profit, vector<int>&weight, vector<vector<int>>&dp)
+{
+    if(i==0)
+    {
+        return (j/weight[0])*profit[0];
+    }
+    
+    if(dp[i][j]!=-1)
+    {
+        return dp[i][j];
+    }
+    
+    int nontake=0+callfunc(i-1,j,profit,weight,dp);
+    int take=0;
+    
+    if(weight[i]<=j)
+    {
+        take=profit[i]+callfunc(i,j-weight[i],profit,weight,dp);
+    }
+    
+    return dp[i][j]=max(nontake,take);
+}
+
+
+
+int unboundedKnapsack(int n, int w, vector<int> &profit, vector<int> &weight)
+{
+    // Write Your Code Here.
+    vector<vector<int>>dp(n,vector<int>(w+1,-1));
+    
+    return callfunc(n-1,w,profit,weight,dp);
+}
