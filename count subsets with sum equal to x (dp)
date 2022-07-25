@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int dp[100][100];
+
+int subsetSum(int a[], int n, int sum)
+{
+    if(n==0)
+    {
+        if(sum==0)
+        {
+            return 1;
+        }
+        
+        else
+        {
+            return 0;
+        }
+    }
+    
+    if(dp[n][sum]!=-1)
+    {
+        return dp[n][sum];
+    }
+    
+    if(a[n-1]>sum)
+    {
+        dp[n][sum]=subsetSum(a,n-1,sum);
+    }
+    
+    else
+    {
+        dp[n][sum]=subsetSum(a,n-1,sum-a[n-1])+subsetSum(a,n-1,sum);
+    }
+    
+    return dp[n][sum];
+}
+
+int main()
+{
+    int n = 4;
+    int a[] = {3,3,3,3};
+    int sum = 6;
+ 
+    memset(dp,-1,sizeof(dp));
+    
+    cout << (subsetSum(a, n, sum));
+}
