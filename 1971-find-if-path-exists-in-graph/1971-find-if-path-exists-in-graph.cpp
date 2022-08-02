@@ -13,36 +13,38 @@ public:
             mp[b].push_back(a);
         }
         
+        vector<bool>vis(n,false);
+        
+        queue<int>q;
+        
         if(source==destination)
         {
             return true;
         }
-        queue<int>q;
-        vector<bool>vis(n,false);
+        
         q.push(source);
         vis[source]=true;
         
         while(!q.empty())
         {
-            int s=q.front();
+            int x=q.front();
             q.pop();
             
-            for(auto x:mp[s])
+            for(auto it:mp[x])
             {
-                if(x==destination)
+                if(it==destination)
                 {
                     return true;
                 }
                 
-                if(!vis[x])
+                if(!vis[it])
                 {
-                    vis[x]=true;
-                    q.push(x);
+                    q.push(it);
+                    vis[it]=true;
                 }
             }
         }
         
         return false;
-        
     }
 };
