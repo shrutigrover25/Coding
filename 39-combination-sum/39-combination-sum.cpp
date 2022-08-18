@@ -1,33 +1,34 @@
 class Solution {
 public:
     
-void findcom(vector<int>&candidates, int target,vector<vector<int>>&ans, vector<int>&ds, int index )
+void callfun(vector<int>&candidates, int target, vector<vector<int>>&ans, vector<int>&temp, int i)
 {
-    if(index==candidates.size())
+    if(i==candidates.size())
     {
         if(target==0)
         {
-            ans.push_back(ds);
+            ans.push_back(temp);
+            
         }
         
         return;
     }
     
-    if(candidates[index]<=target)
+    if(candidates[i]<=target)
     {
-        ds.push_back(candidates[index]);
-        findcom(candidates,target-candidates[index],ans,ds,index);
-        ds.pop_back();
+        temp.push_back(candidates[i]);
+        callfun(candidates,target-candidates[i],ans,temp,i);
+        temp.pop_back();
     }
     
-    findcom(candidates,target,ans,ds,index+1);
+    callfun(candidates,target,ans,temp,i+1);
 }
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         
         vector<vector<int>>ans;
-        vector<int>ds;
+        vector<int>temp;
         
-        findcom(candidates,target,ans,ds,0);
+        callfun(candidates,target,ans,temp,0);
         
         return ans;
         
