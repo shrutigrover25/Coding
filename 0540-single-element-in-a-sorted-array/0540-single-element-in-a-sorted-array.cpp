@@ -2,24 +2,24 @@ class Solution {
 public:
     int singleNonDuplicate(vector<int>& nums) {
         
-        map<int,int>mp;
+        int low=0;
+        int n=nums.size();
+        int high=n-1;
         
-        int ans;
-        
-        for(int i=0;i<nums.size();i++)
+        while(low<high)
         {
-            mp[nums[i]]++;
-        }
-        
-        for(auto it:mp)
-        {
-            if(it.second == 1)
-            {
-                ans=it.first;
-                break;
+            int mid = (low + high) / 2;
+            if (mid % 2 == 1) {
+                mid--;
+            }
+            if (nums[mid] != nums[mid + 1]) {
+                high = mid;
+            } else {
+                low = mid + 2;
             }
         }
+        return nums[low];
         
-        return ans;
+        
     }
 };
