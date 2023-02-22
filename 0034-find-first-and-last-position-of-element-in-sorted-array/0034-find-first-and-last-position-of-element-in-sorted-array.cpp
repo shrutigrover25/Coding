@@ -1,8 +1,10 @@
 class Solution {
 public:
     
-    int findlastpos(vector<int>&nums, int target, int low, int high, vector<int>&v)
+int firstocc(vector<int>&nums, int n, int target)
 {
+    int low=0;
+    int high=n-1;
     
     int ans=-1;
     
@@ -13,7 +15,7 @@ public:
         if(nums[mid]==target)
         {
             ans=mid;
-            low=mid+1;
+            high=mid-1;
         }
         
         else if(nums[mid]<target)
@@ -30,8 +32,11 @@ public:
     return ans;
 }
     
-int findfirstpos(vector<int>&nums, int target, int low, int high, vector<int>&v)
+    
+int lastocc(vector<int>&nums, int n, int target)
 {
+    int low=0;
+    int high=n-1;
     
     int ans=-1;
     
@@ -42,7 +47,7 @@ int findfirstpos(vector<int>&nums, int target, int low, int high, vector<int>&v)
         if(nums[mid]==target)
         {
             ans=mid;
-            high=mid-1;
+            low=mid+1;
         }
         
         else if(nums[mid]<target)
@@ -60,21 +65,18 @@ int findfirstpos(vector<int>&nums, int target, int low, int high, vector<int>&v)
 }
     vector<int> searchRange(vector<int>& nums, int target) {
         
-        
-        
-        int low=0;
-        int high=nums.size()-1;
-        
         vector<int>v;
         
-        int first =findfirstpos(nums,target,low,high,v);
-        int last=findlastpos(nums,target,low,high,v);
+        int n=nums.size();
         
-        v.push_back(first);
-        v.push_back(last);
+       
+        int ans=firstocc(nums,n,target);
+        int res=lastocc(nums,n,target);
+        
+        v.push_back(ans);
+        v.push_back(res);
         
         return v;
-        
         
     }
 };
