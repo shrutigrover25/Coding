@@ -7,18 +7,14 @@ public:
         int left=0;
         int right=n-1;
         
-        int ans=-1;
         
-        while(left<=right)
+        
+        while(left<right)
         {
             int mid=left+(right-left)/2;
             
-            if(nums[mid]==target)
-            {
-                ans=mid;
-                break;
-            }
-            else if(nums[mid]<target)
+           
+            if(nums[mid]<target)
             {
                 left=mid+1;
             }
@@ -26,12 +22,17 @@ public:
             else
             {
                 
-                right=mid-1;
+                right=mid;
                
             }
         }
         
-        return ans;
+        if(nums[right]==target)
+        {
+            return right;
+        }
+        
+        return -1;
         
         
         
