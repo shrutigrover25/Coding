@@ -1,7 +1,6 @@
 # Floor in a Sorted Array
-## Easy 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given a sorted array <strong>arr</strong>[] of size <strong>N</strong> without duplicates, and given a value <strong>x</strong>. Floor of x is defined as the largest element <strong>K</strong> in arr[] such that K is smaller than or equal to x.&nbsp;Find the index of K(0-based indexing).</span></p>
+## Easy
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given a sorted array <strong>arr</strong>[] of size <strong>N</strong> without duplicates, and given a value <strong>x</strong>. Floor of x is defined as the largest element <strong>K</strong> in arr[] such that K is smaller than or equal to x.&nbsp;Find the index of K(0-based indexing).</span></p>
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
@@ -34,5 +33,4 @@ The task is to complete the function <strong>findFloor</strong>() which returns 
 1 ≤ N ≤ 10<sup>7</sup><br>
 1 ≤ arr[i] ≤ 10<sup>18</sup><br>
 0 ≤ X&nbsp;≤<sup> </sup>arr[n-1]</span></p>
- <p></p>
-            </div>
+</div>
