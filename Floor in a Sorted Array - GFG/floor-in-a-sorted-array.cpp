@@ -1,9 +1,9 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution{
   public:
     // Function to find floor of x
@@ -11,40 +11,41 @@ class Solution{
     // x: element whose floor is to find
     int findFloor(vector<long long> v, long long n, long long x){
         
-        // Your code here
-        long long start=0;
-        long long end=n-1;
-        long long res=-1;
+        long long int low=0;
+        long long int high=n-1;
         
-        while(start<=end)
+        long long int res=-1;
+        
+        while(low<=high)
         {
-            long long mid=start+(end-start)/2;
+            long long int mid=low+(high-low)/2;
             
             if(v[mid]==x)
             {
                 return mid;
             }
             
-            else if(v[mid]<x)
+            else if(v[mid]>x)
             {
-                res=mid;
-                start=mid+1;
+                high=mid-1;
             }
             
             else
             {
-                end=mid-1;
+                res=mid;
+                low=mid+1;
             }
-            
         }
         
         return res;
+        
+        // Your code here
         
     }
 };
 
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main() {
 	
@@ -70,4 +71,5 @@ int main() {
 	}
 	
 	return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
