@@ -12,6 +12,7 @@ public:
             pq.push({score[i][k],i});
         }
         
+        
         vector<vector<int>>ans;
         
         while(!pq.empty())
