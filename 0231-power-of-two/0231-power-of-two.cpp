@@ -7,14 +7,20 @@ public:
             return false;
         }
         
-        while(n%2==0)
+        int count=0;
+        
+        while(n)
         {
-            n=n/2;
+            count++;
+            n=n&(n-1);
+            
+            
         }
         
-        if(n==1)
+        if(count==1)
+        {
             return true;
-        
+        }
         
         return false;
     }
