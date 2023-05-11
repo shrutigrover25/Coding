@@ -3,13 +3,12 @@ public:
     string reorganizeString(string s) {
         
         string ans="";
-        
+        int n=s.length();
         
         priority_queue<pair<int,char>>pq;
+        unordered_map<char,int>mp;
         
-        map<char,int>mp;
-        
-        for(int i=0;i<s.length();i++)
+        for(int i=0;i<n;i++)
         {
             mp[s[i]]++;
         }
@@ -21,46 +20,45 @@ public:
         
         while(pq.size()>1)
         {
-            auto top1=pq.top();
+            auto one=pq.top();
             pq.pop();
-            auto top2=pq.top();
+            auto two=pq.top();
+            
+            
             pq.pop();
             
-            ans+=top1.second;
-            ans+=top2.second;
+            ans+=one.second;
+            ans+=two.second;
             
-            top1.first-=1;
-            top2.first-=1;
+            one.first-=1;
+            two.first-=1;
             
-         
-            if(top1.first>0)
+            if(one.first>=1)
             {
-                pq.push(top1);
+                pq.push({one.first,one.second});
             }
             
-            if(top2.first>0)
+            if(two.first>=1)
             {
-                pq.push(top2);
+                pq.push({two.first,two.second});
             }
-            
         }
         
-        if(!pq.empty())
+        while(!pq.empty())
         {
-            if(pq.top().first > 1)
+            if(pq.top().first>1)
             {
                 return "";
             }
             
             else
             {
-                ans+=pq.top().second;
-                pq.pop();
+                 ans+=pq.top().second;
+                 pq.pop();
             }
         }
         
         return ans;
-        
         
         
     }
