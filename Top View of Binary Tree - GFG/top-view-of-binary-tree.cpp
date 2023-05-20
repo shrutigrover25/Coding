@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 //Initial Template for C++
 
 #include <bits/stdc++.h>
@@ -88,9 +88,7 @@ Node* buildTree(string str)
 }
 
 
- // } Driver Code Ends
-
-
+// } Driver Code Ends
 /*
 struct Node
 {
@@ -104,39 +102,61 @@ class Solution
     public:
     //Function to return a list of nodes visible from the top view 
     //from left to right in Binary Tree.
-   vector<int> topView(Node *root)
+    vector<int> topView(Node *root)
     {
-        // first element you get for a particular vertical level is the element u see from top
-        map<int,int> mp; // level and corresp element
-        /*
-        -2 -1 0 1 2 are the vertical levels. 
-        If element is in a level and current val for that level is 0, then add this element to
-        that level. Else, that element is not visible at that level. So, continue
-        */
-        queue<pair<Node*, int>> q; // Element and corresp. height
-        vector<int> res;
-        if(!root) return res;
-        q.push({root, 0}); 
-        while(!q.empty()){
-            Node* curr = q.front().first;
-            int level = q.front().second;
-            q.pop();
-            if(mp.find(level)==mp.end()) mp[level] = curr->data; // if val for this currht already exists, continue
-            if(curr->left) q.push({curr->left, level-1});
-            if(curr->right) q.push({curr->right, level+1});
-        }
-        // our map m has all the elements visible from top at each vertical level
-        for(auto t: mp){
-            res.push_back(t.second);
-        }
-        return res;
+        //Your code here
         
+        
+        vector<int>v;
+        
+        if(root==NULL)
+        {
+            return v;
+        }
+        
+        queue<pair<Node*,int>>q;
+        map<int,int>mp;
+        
+        q.push({root,0});
+        while(!q.empty())
+        {
+            auto it=q.front();
+            q.pop();
+            Node* node=it.first;
+            int level=it.second;
+            
+            if(mp.find(level)==mp.end())
+            {
+                mp[level]=node->data;
+            }
+            
+            if(node->left!=NULL)
+            {
+                q.push({node->left,level-1});
+            }
+            
+            if(node->right!=NULL)
+            {
+                q.push({node->right,level+1});
+            }
+        }
+        
+        
+        for(auto it:mp)
+        {
+            v.push_back(it.second);
+        }
+        
+        return v;
     }
+    
+
 
 };
 
 
-// { Driver Code Starts.
+
+//{ Driver Code Starts.
 
 int main() {
     int tc;
@@ -153,4 +173,5 @@ int main() {
         cout<<endl;
     }
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
