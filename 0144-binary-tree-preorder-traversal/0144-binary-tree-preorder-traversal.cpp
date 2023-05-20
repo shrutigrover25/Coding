@@ -12,23 +12,33 @@
 class Solution {
 public:
     
-void findans(TreeNode* root, vector<int>&v)
+void callfunc(TreeNode* root, vector<int>&v)
 {
-    if(root==NULL)
-    {
-        return;
-    }
     v.push_back(root->val);
-    findans(root->left,v);
-    findans(root->right,v);
+    
+    if(root->left!=NULL)
+    {
+        callfunc(root->left,v);
+    }
+    
+    if(root->right!=NULL)
+    {
+        callfunc(root->right,v);
+    }
 }
     vector<int> preorderTraversal(TreeNode* root) {
         
         vector<int>v;
-    
-        findans(root,v);
+        
+        if(root==NULL)
+        {
+            return v;
+        }
+        
+        callfunc(root,v);
         
         return v;
+        
         
     }
 };
