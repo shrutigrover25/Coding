@@ -1,12 +1,11 @@
 # Longest Common Substring
-## Medium 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given two strings. The task is to find the length of the longest common substring.</span></p>
+## Medium
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given two strings. The task is to find the length of the longest common substring.</span></p>
 
 <p><br>
 <span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input: </strong>S1 = "ABCDGH", S2 = "ACDGHR"
+<pre><span style="font-size:18px"><strong>Input: </strong>S1 = "ABCDGH", S2 = "ACDGHR", n = 6, m = 6
 <strong>Output:</strong> 4
 <strong>Explanation</strong>: The longest common substring
 is "CDGH" which has length 4.</span>
@@ -14,7 +13,7 @@ is "CDGH" which has length 4.</span>
 
 <p><span style="font-size:18px"><strong>Example 2:</strong></span></p>
 
-<pre><span style="font-size:18px"><strong>Input</strong>: S1 = "ABC", S2 "ACB"
+<pre><span style="font-size:18px"><strong>Input</strong>: S1 = "ABC", S2 "ACB", n = 3, m = 3
 <strong>Output:</strong> 1
 <strong>Explanation</strong>: The longest common substrings
 are "A", "B", "C" all having length 1.
@@ -31,5 +30,4 @@ You don't need to read input or print anything. Your task is to complete the fun
 <p><br>
 <span style="font-size:18px"><strong>Constraints:</strong><br>
 1&lt;=n, m&lt;=1000</span></p>
- <p></p>
-            </div>
+</div>
