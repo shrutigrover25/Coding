@@ -1,46 +1,53 @@
 class Solution {
 public:
     
-bool dfs(int i, vector<int>&vis, vector<vector<int>>& graph)
-{
-    if(vis[i]==-1)
+    bool bfs(int col[],vector<vector<int>>& graph,int V, int node)
     {
-        vis[i]=1;
-    }
-    
-    for(auto it:graph[i])
-    {
-        int color=vis[i];
+        queue<int>q;
+        q.push(node);
+        col[node]=0;
         
-        if(vis[it]==-1)
+        
+        while(!q.empty())
         {
-            vis[it]=1-color;
+            int first=q.front();
+            q.pop();
             
-            if(!dfs(it,vis,graph))
+            int colour=col[first];
+            
+            for(auto it:graph[first])
             {
-                return false;
+                if(col[it]==-1)
+                {
+                    col[it]=1-colour;
+                    q.push(it);
+                }
+                
+                else if(col[it]==colour)
+                {
+                    return false;
+                }
             }
         }
         
-        else if(vis[it]==color)
-        {
-            return false;
-        }
+        
+        return true;
     }
-    
-    return true;
-}
     bool isBipartite(vector<vector<int>>& graph) {
         
-        int n=graph.size();
+        int V=graph.size();
+        int col[V];
         
-        vector<int>vis(n+1,-1);
-        
-        for(int i=0;i<n;i++)
+        for(int i=0;i<V;i++)
         {
-            if(vis[i]==-1)
+            col[i]=-1;
+        }
+        
+        for(int i=0;i<V;i++)
+        {
+            if(col[i]==-1)
             {
-                if(!dfs(i,vis,graph))
+                if(bfs(col,graph,V,i)==false)
                 {
                     return false;
                 }
@@ -48,5 +55,6 @@ bool dfs(int i, vector<int>&vis, vector<vector<int>>& graph)
         }
         
         return true;
+        
     }
 };
