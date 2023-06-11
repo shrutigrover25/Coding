@@ -2,8 +2,7 @@ class Solution {
 public:
     bool search(vector<int>& nums, int target) {
         
-        int n=nums.size();
-        
+         int n=nums.size();
         int low=0;
         int high=n-1;
         
@@ -16,7 +15,7 @@ public:
                 return true;
             }
             
-            if(nums[mid]==nums[low] && nums[mid]==nums[high])
+            if(nums[mid]==nums[low] && nums[high]==nums[mid])
             {
                 low++;
                 high--;
@@ -24,7 +23,7 @@ public:
             
             else if(nums[low]<=nums[mid])
             {
-                if(nums[low]<=target && nums[mid]>target )
+                if(nums[low]<=target && target<=nums[mid] )
                 {
                     high=mid-1;
                 }
@@ -35,17 +34,25 @@ public:
                 }
             }
             
-           
-                else
+            else
             {
-                if((nums[mid] < target) && (nums[high]>= target))
-                    low = mid + 1;
+                if(target>=nums[mid] && target<=nums[high])
+                {
+                    low=mid+1;
+                }
+                
                 else
-                    high = mid - 1;
+                {
+                    high=mid-1;
+                }
             }
+            
             
         }
         
         return false;
+        
+    
+        
     }
 };
