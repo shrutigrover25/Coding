@@ -1,62 +1,54 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 //Initial template for C++
 
 #include <bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 //User function template for C++
 
 class Solution{
   public:
     int longestKSubstr(string s, int k) {
-        
-        int n=s.length();
-        map<char,int>mp;
-        
-        int i=0;
-        int j=0;
-        int maxii=INT_MIN;
-        
-        if(s.length()<k)
-        {
-            return -1;
-        }
-        
-        while(j<s.size())
-        {
-            mp[s[j]]++;
-            
-            while(mp.size()>k)
-            {
-                mp[s[i]]--;
-                
-                if(mp[s[i]]==0)
-                {
-                    mp.erase(s[i]);
-                }
-                
-                i++;
-            }
-            
-            if(mp.size()==k)
-            {
-            maxii=max(j-i+1,maxii);
-            }
-            
-            j++;
-        }
-        
-        if(maxii==INT_MIN)
-        {
-            return -1;
-        }
-        return maxii;
     // your code here
+    int r=0;
+    int l=0;
+    
+    int ans=-1;
+    int n=s.length();
+    
+    map<char,int>mp;
+    
+    while(r<n)
+    {
+        mp[s[r]]++;
+        
+        while(mp.size()>k)
+        {
+            mp[s[l]]--;
+            
+            if(mp[s[l]]==0)
+            {
+                mp.erase(s[l]);
+            }
+            
+            l++;
+        }
+        
+        if(mp.size()==k)
+        {
+            ans=max(ans,r-l+1);
+        }
+        
+        r++;
+        
+    }
+    
+    return ans;
     }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 int main() {
     int t;
     cin >> t;
@@ -69,4 +61,5 @@ int main() {
         cout << ob.longestKSubstr(s, k) << endl;
     }
 }
-  // } Driver Code Ends
+
+// } Driver Code Ends
