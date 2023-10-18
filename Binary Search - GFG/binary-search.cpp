@@ -1,70 +1,61 @@
-// { Driver Code Starts
-//Initial template for C++
+//{ Driver Code Starts
+// Initial template for C++
 
 #include <bits/stdc++.h>
 using namespace std;
 
 
- // } Driver Code Ends
-//User function template for C++
+// } Driver Code Ends
+// User function template for C++
 
-class Solution{
-public:
-
-int findans(int arr[], int n, int k)
-{
-    int start=0;
-    int end=n-1;
-    
-    while(start<=end)
-    {
-        int mid=start+(end-start)/2;
+class Solution {
+  public:
+    int binarysearch(int arr[], int n, int k) {
         
-        if(arr[mid]==k)
+        int low=0;
+        int high=n-1;
+        
+        while(low<=high)
         {
-            return mid;
+            int mid=low+(high-low)/2;
+            
+            if(arr[mid]==k)
+            {
+                return mid;
+            }
+            
+            else if(arr[mid]>k)
+            {
+                high=mid-1;
+            }
+            
+            else
+            {
+                low=mid+1;
+            }
         }
         
-        else if(arr[mid]<k)
-        {
-            start=mid+1;
-        }
+        return -1;
         
-        else
-        {
-            end=mid-1;
-        }
-    }
-    
-    return -1;
-}
-    int binarysearch(int arr[], int n, int k){
-        
-       int ans= findans(arr,n,k);
-       
-        // code here
     }
 };
 
-// { Driver Code Starts.
-int main()
-{
+//{ Driver Code Starts.
+int main() {
     int t;
-    cin>>t;
+    cin >> t;
 
-    while(t--)
-    {
+    while (t--) {
         int N;
-        cin>>N;
+        cin >> N;
         int arr[N];
-        for(int i=0;i<N;i++)
-            cin>>arr[i];
+        for (int i = 0; i < N; i++) cin >> arr[i];
         int key;
-        cin>>key;
+        cin >> key;
         Solution ob;
-        int found = ob.binarysearch(arr,N,key);
-        cout<<found<<endl;
+        int found = ob.binarysearch(arr, N, key);
+        cout << found << endl;
     }
 }
 
-  // } Driver Code Ends
+// } Driver Code Ends
